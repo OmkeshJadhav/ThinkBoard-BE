@@ -3,8 +3,12 @@ const PORT = 3000
 
 const app = express()
 
-app.get("/", (req, res) => {
+app.get("/api/notes", (req, res) => {
     res.status(200).send("You have 6 notes")
+})
+
+app.post("/api/notes", (req, res) => {
+    res.status(201).send("New Note created successfully.")
 })
 
 app.listen(PORT, () => {
