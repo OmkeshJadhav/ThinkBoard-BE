@@ -8,15 +8,15 @@ app.get("/api/notes", (req, res) => {
 })
 
 app.post("/api/notes", (req, res) => {
-    res.status(201).send("New Note created successfully.")
+    res.status(201).json({message: "New Note created successfully."})
 })
 
 app.put("/api/notes/:id", (req, res) => {
-    res.status(200).send("Note updated successfully")
+    res.status(200).send({message: "Note updated successfully"})
 })
 
 app.delete("/api/notes/:id", (req, res) => {
-    res.status(200).send("Note updated successfully")
+    res.status(200).send({message: "Note updated successfully"})
 })
 
 app.listen(PORT, () => {
