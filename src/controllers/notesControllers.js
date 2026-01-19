@@ -9,3 +9,7 @@ export const createNewNote = (req, res) => {
 export const updateNote = (req, res) => {
     res.status(200).json({message: "Note updated successfully"})
 }
+
+export const deleteNote = (req, res) => {
+    res.status(200).json({message: "Note deleted successfully"})
+}
