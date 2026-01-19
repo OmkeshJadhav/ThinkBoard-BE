@@ -1,5 +1,5 @@
 import express from "express"
-import notesRoutes from "notesRoutes.js"
+import notesRoutes from "./routes/notesRoutes.js"
 const PORT = 3000
 
 const app = express()
