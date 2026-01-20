@@ -1,8 +1,15 @@
 import express from "express"
 import notesRoutes from "../src/routes/notesRoutes.js"
-const PORT = 3000
+import { connectDB } from "./config/db.js"
+import { configDotenv } from "dotenv"
+
+configDotenv()
+
+const PORT = process.env.PORT
 
 const app = express()
+
+connectDB()
 
 app.use("/api/notes", notesRoutes)
 
