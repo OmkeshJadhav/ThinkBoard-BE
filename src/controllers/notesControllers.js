@@ -40,6 +40,12 @@ export const updateNote = async (req, res) => {
     }
 }
 
-export const deleteNote = (req, res) => {
-    res.status(200).json({ message: "Note deleted successfully" })
+export const deleteNote = async (req, res) => {
+    try {
+        const deleteNote = await Note.findByIdAndDelete(req.params.id)
+        res.status(200).json(deleteNote)
+    } catch (error) {
+        console.error("Error in deleteNote controller", error)
+        res.status(500).json({ messgae: "Internal Server Error"})
+    }
 }
