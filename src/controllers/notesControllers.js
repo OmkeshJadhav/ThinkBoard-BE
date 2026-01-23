@@ -6,27 +6,40 @@ export const getAllNotes = async (req, res) => {
         res.status(200).json(notes)
     } catch (error) {
         console.error("Error in getAllNotes controller", error)
-        res.status(500).json({messgae: "Internal Server Error"})
+        res.status(500).json({ messgae: "Internal Server Error" })
     }
 }
 
 export const createNewNote = async (req, res) => {
     try {
-        const {title, content} = req.body
-        const newNote = new Note({title: title, content: content})
+        const { title, content } = req.body
+        const newNote = new Note({ title: title, content: content })
 
         const savedNewNote = await newNote.save()
         res.status(201).json(savedNewNote)
     } catch (error) {
-        console.error("Error in getAllNotes controller", error)
-        res.status(500).json({messgae: "Internal Server Error"})
+        console.error("Error in createNewNote controller", error)
+        res.status(500).json({ messgae: "Internal Server Error" })
     }
 }
 
-export const updateNote = (req, res) => {
-    res.status(200).json({message: "Note updated successfully"})
+export const updateNote = async (req, res) => {
+    try {
+        const { title, content } = req.body;
+        const updatedNote = await Note.findByIdAndUpdate(req.params.id,
+            { title, content },
+            {
+                new: true,            // gives updated response
+                runValidators: true,  // validates schema
+            }
+        )
+        res.status(200).json(updatedNote)
+    } catch (error) {
+        console.error("Error in updateNote controller", error)
+        res.status(500).json({ messgae: "Internal Server Error" })
+    }
 }
 
 export const deleteNote = (req, res) => {
-    res.status(200).json({message: "Note deleted successfully"})
+    res.status(200).json({ message: "Note deleted successfully" })
 }
