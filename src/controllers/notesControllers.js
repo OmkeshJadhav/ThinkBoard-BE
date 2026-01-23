@@ -1,9 +1,9 @@
 import Note from "../models/Note.js"
 import mongoose from "mongoose";
 
-export const getAllNotes = async (req, res) => {
+export const getAllNotes = async (_, res) => {  // skip ununsed variable by using _
     try {
-        const notes = await Note.find()
+        const notes = await Note.find().sort({createdAt:-1})  // Newest First
         res.status(200).json(notes)
     } catch (error) {
         console.error("Error in getAllNotes controller", error)
@@ -13,8 +13,16 @@ export const getAllNotes = async (req, res) => {
 
 export const getNoteById = async (req, res) => {
     try {
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: "Invalid note ID" });
+        }
+        
         const note = await Note.findById(req.params.id)
-        console.log(note);
+        
+        if (!deleteNote) {
+            return res.status(404).json({ message: "Note not found" })
+        }
+
         res.status(200).json(note)
     } catch (error) {
         console.error("Error in getNoteById controller", error)

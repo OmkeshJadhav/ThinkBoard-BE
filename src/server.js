@@ -11,7 +11,7 @@ const app = express()
 
 connectDB()
 
-// Middleware - Added for POST request
+// Middleware - Added for POST request - Helps to access req.body
 app.use(express.json())
 
 app.use("/api/notes", notesRoutes)
