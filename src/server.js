@@ -11,6 +11,9 @@ const app = express()
 
 connectDB()
 
+// Middleware - Added for POST request
+app.use(express.json())
+
 app.use("/api/notes", notesRoutes)
 
 app.listen(PORT, () => {
