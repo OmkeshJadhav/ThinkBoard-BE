@@ -11,6 +11,17 @@ export const getAllNotes = async (req, res) => {
     }
 }
 
+export const getNoteById = async (req, res) => {
+    try {
+        const note = await Note.findById(req.params.id)
+        console.log(note);
+        res.status(200).json(note)
+    } catch (error) {
+        console.error("Error in getNoteById controller", error)
+        res.status(500).json({ messgae: "Internal Server Error" })
+    }
+}
+
 export const createNewNote = async (req, res) => {
     try {
         const { title, content } = req.body
