@@ -19,7 +19,7 @@ export const getNoteById = async (req, res) => {
         
         const note = await Note.findById(req.params.id)
         
-        if (!deleteNote) {
+        if (!note) {
             return res.status(404).json({ message: "Note not found" })
         }
 
