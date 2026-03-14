@@ -33,7 +33,7 @@ export const getNoteById = async (req, res) => {
 export const createNewNote = async (req, res) => {
     try {
         const { title, content } = req.body
-        const newNote = new Note({ title: title, content: content })
+        const newNote = new Note({ title: title, content: content })  // Calls the model and passes data for that model
 
         const savedNewNote = await newNote.save()
         res.status(201).json(savedNewNote)
