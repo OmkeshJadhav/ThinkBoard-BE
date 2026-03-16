@@ -14,6 +14,12 @@ connectDB()
 // Middleware - Added for POST request - Helps to access req.body
 app.use(express.json())
 
+// Simple custom middleware
+// app.use((req, res, next) => {
+//     console.log(`Request method is ${req.method} and Request URL is ${req.url}`)
+//     next()
+// })
+
 app.use("/api/notes", notesRoutes)
 
 app.listen(PORT, () => {
