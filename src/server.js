@@ -2,6 +2,7 @@ import express from "express"
 import notesRoutes from "../src/routes/notesRoutes.js"
 import { connectDB } from "./config/db.js"
 import { configDotenv } from "dotenv"
+import rateLimiter from "./middlewares/rateLimiter.js"
 
 configDotenv()
 
@@ -13,6 +14,8 @@ connectDB()
 
 // Middleware - Added for POST request - Helps to access req.body
 app.use(express.json())
+
+app.use(rateLimiter)
 
 // Simple custom middleware
 // app.use((req, res, next) => {
