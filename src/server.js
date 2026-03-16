@@ -10,8 +10,6 @@ const PORT = process.env.PORT
 
 const app = express()
 
-connectDB()
-
 // Middleware - Added for POST request - Helps to access req.body
 app.use(express.json())
 
@@ -25,6 +23,8 @@ app.use(rateLimiter)
 
 app.use("/api/notes", notesRoutes)
 
-app.listen(PORT, () => {
-    console.log(`App is listening on the PORT ${PORT}`);
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log(`App is listening on the PORT ${PORT}`);
+    })
 })
